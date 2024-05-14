@@ -1,8 +1,10 @@
 import { useState } from "react";
 
+const MAX_CHARACTERS = 150;
+
 export default function FeedbackForm() {
   const [text, setText] = useState("");
-  const charCount = 150 - text.length;
+  const charCount = MAX_CHARACTERS - text.length;
   return (
     <form className="form">
       <textarea
