@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-const MAX_CHARACTERS = 150;
+import { MAX_CHARACTERS } from "../lib/constants";
 
 export default function FeedbackForm() {
   const [text, setText] = useState("");
@@ -15,7 +14,6 @@ export default function FeedbackForm() {
         id="feedback-textarea"
         placeholder="bla"
         spellCheck={false}
-        maxLength={150}
       />
       <label htmlFor="feedback-textarea">
         Enter your feedback here, remember to #hashtag the company
