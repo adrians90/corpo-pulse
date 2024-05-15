@@ -8,6 +8,10 @@ export default function FeedbackList() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const handleAddToList = (text) => {
+    const newItem: FeedbackItem = {};
+  };
+
   useEffect(() => {
     const fetchFeedbackItems = async () => {
       setIsLoading(true);
