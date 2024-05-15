@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FeedbackItem from "./FeedbackItem";
 import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
+import { TFeedbackItem } from "../lib/Types";
 
 export default function FeedbackList() {
   const [feedbackItems, setFeedbackItems] = useState([]);
@@ -9,7 +10,7 @@ export default function FeedbackList() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleAddToList = (text) => {
-    const newItem: FeedbackItem = {};
+    const newItem: TFeedbackItem = {};
   };
 
   useEffect(() => {
