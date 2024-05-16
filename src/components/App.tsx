@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Container from "./layout/Container";
 import Footer from "./layout/Footer";
 import HashtagList from "./hashtag/HashtagList";
-import { TFeedbackItem } from "../lib/Types";
+
 import FeedbackItemsContextProvider from "./contexts/FeedbackItemsContextProvider";
 
 function App() {
