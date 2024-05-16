@@ -3,6 +3,7 @@ import Container from "./layout/Container";
 import Footer from "./layout/Footer";
 import HashtagList from "./hashtag/HashtagList";
 import { TFeedbackItem } from "../lib/Types";
+import FeedbackItemsContextProvider from "./contexts/FeedbackItemsContextProvider";
 
 function App() {
   const [selectedCompany, setSelectedCompany] = useState("");
@@ -24,12 +25,9 @@ function App() {
   return (
     <div className="app">
       <Footer />
-      <Container
-        errorMessage={errorMessage}
-        isLoading={isLoading}
-        feedbackItems={filteredFeedbackItems}
-        handleAddToList={handleAddToList}
-      />
+      <FeedbackItemsContextProvider>
+        <Container />
+      </FeedbackItemsContextProvider>
 
       <HashtagList
         companyList={companyList}

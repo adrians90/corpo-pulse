@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { TFeedbackItem } from "../../lib/Types";
 
 type TFeedbackItemsContext = {
@@ -9,9 +9,17 @@ type TFeedbackItemsContext = {
   handleAddToList: (text: string) => void;
 };
 
-const FeedbackItemsContext = createContext<TFeedbackItemsContext | null>(null);
+type FeedbackItemsContextProviderProps = {
+  children: React.ReactNode;
+};
 
-export default function FeedbackItemsContextProvider() {
+export const FeedbackItemsContext = createContext<TFeedbackItemsContext | null>(
+  null
+);
+
+export default function FeedbackItemsContextProvider({
+  children,
+}: FeedbackItemsContextProviderProps) {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -87,6 +95,18 @@ export default function FeedbackItemsContextProvider() {
         companyList,
         handleAddToList,
       }}
-    ></FeedbackItemsContext.Provider>
+    >
+      {children}
+    </FeedbackItemsContext.Provider>
   );
+}
+
+export function useFeedbackItemsContext() {
+  const context = useContext(FeedbackItemsContext);
+  if (!context) {
+    throw new Error(
+      "FeedbackItemsContext is not defined in FeedbackList component"
+    );
+  }
+  return context;
 }
