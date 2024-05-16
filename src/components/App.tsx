@@ -29,10 +29,7 @@ function App() {
         <Container />
       </FeedbackItemsContextProvider>
 
-      <HashtagList
-        companyList={companyList}
-        handleSelectCompany={handleSelectCompany}
-      />
+      <HashtagList handleSelectCompany={handleSelectCompany} />
     </div>
   );
 }
