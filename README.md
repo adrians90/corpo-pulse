@@ -4,7 +4,7 @@ Corpo Pulse is a public website where people can give feedback to companies. Use
 The feedback data is persisted between renders.
 
 
-**Built with: TypeScript, React, CSS.**
+**Built with: TypeScript, React, CSS, Zustand for state management.**
 
 
 
