@@ -2,7 +2,6 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import { TFeedbackItem } from "../../lib/Types";
 
 type TFeedbackItemsContext = {
-  feedbackItems: TFeedbackItem[];
   filteredFeedbackItems: TFeedbackItem[];
   isLoading: boolean;
   errorMessage: string;
@@ -106,7 +105,6 @@ export default function FeedbackItemsContextProvider({
   return (
     <FeedbackItemsContext.Provider
       value={{
-        feedbackItems,
         filteredFeedbackItems,
         isLoading,
         errorMessage,
