@@ -19,7 +19,7 @@ function App() {
       text: text,
       upvoteCount: 0,
       daysAgo: 0,
-      companyName: companyName,
+      company: companyName,
       badgeLetter: companyName.substring(0, 1).toUpperCase(),
     };
 
