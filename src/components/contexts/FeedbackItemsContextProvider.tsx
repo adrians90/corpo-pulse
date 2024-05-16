@@ -3,10 +3,12 @@ import { TFeedbackItem } from "../../lib/Types";
 
 type TFeedbackItemsContext = {
   feedbackItems: TFeedbackItem[];
+  filteredFeedbackItems: TFeedbackItem[];
   isLoading: boolean;
   errorMessage: string;
   companyList: string[];
   handleAddToList: (text: string) => void;
+  handleSelectCompany: (company: string) => void;
 };
 
 type FeedbackItemsContextProviderProps = {
@@ -23,6 +25,7 @@ export default function FeedbackItemsContextProvider({
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [selectedCompany, setSelectedCompany] = useState("");
 
   const companyList = useMemo(
     () =>
@@ -32,6 +35,16 @@ export default function FeedbackItemsContextProvider({
           return array.indexOf(company) === index;
         }),
     [feedbackItems]
+  );
+
+  const filteredFeedbackItems = useMemo(
+    () =>
+      selectedCompany
+        ? feedbackItems.filter(
+            (feedbackItem) => feedbackItem.company === selectedCompany
+          )
+        : feedbackItems,
+    [feedbackItems, selectedCompany]
   );
 
   const handleAddToList = async (text: string) => {
@@ -63,6 +76,10 @@ export default function FeedbackItemsContextProvider({
     );
   };
 
+  const handleSelectCompany = (company: string) => {
+    setSelectedCompany(company);
+  };
+
   useEffect(() => {
     const fetchFeedbackItems = async () => {
       setIsLoading(true);
@@ -90,23 +107,15 @@ export default function FeedbackItemsContextProvider({
     <FeedbackItemsContext.Provider
       value={{
         feedbackItems,
+        filteredFeedbackItems,
         isLoading,
         errorMessage,
         companyList,
         handleAddToList,
+        handleSelectCompany,
       }}
     >
       {children}
     </FeedbackItemsContext.Provider>
   );
-}
-
-export function useFeedbackItemsContext() {
-  const context = useContext(FeedbackItemsContext);
-  if (!context) {
-    throw new Error(
-      "FeedbackItemsContext is not defined in FeedbackList component"
-    );
-  }
-  return context;
 }
